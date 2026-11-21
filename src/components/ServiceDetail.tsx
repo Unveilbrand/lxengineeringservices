@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
-const accents = {
+import ServiceForm from "@/components/ServiceForm";
+
+export const accents = {
   green: { solid: "#75DD43", soft: "#e3f8d9" },
   yellow: { solid: "#f5c400", soft: "#fdf3c4" },
   orange: { solid: "#e8732c", soft: "#fde3d2" },
@@ -10,14 +12,19 @@ const accents = {
 
 export type ServiceAccent = keyof typeof accents;
 
-const serviceLinks = [
-  { label: "Architectural Drawings", href: "/services/architectural-drawings", key: "architectural-drawings" },
-  { label: "Interior Design & Planning", href: "/services/interior-design-planning", key: "interior-design-planning" },
-  { label: "Consulting Services", href: "/services/consulting-services", key: "consulting-services" },
-  { label: "Project Management", href: "/services/project-management", key: "project-management" },
-  { label: "Landscape Architecture", href: "/services/landscape-architecture", key: "landscape-architecture" },
-  { label: "3D Rendering Visualization", href: "/services/3d-rendering-visualization", key: "3d-rendering-visualization" },
-  { label: "Feasibility Studies", href: "/services/feasibility-studies", key: "feasibility-studies" },
+export const serviceLinks: {
+  label: string;
+  href: string;
+  key: string;
+  accent: ServiceAccent;
+}[] = [
+  { label: "Architectural Drawings", href: "/services/architectural-drawings", key: "architectural-drawings", accent: "green" },
+  { label: "Interior Design & Planning", href: "/services/interior-design-planning", key: "interior-design-planning", accent: "yellow" },
+  { label: "Consulting Services", href: "/services/consulting-services", key: "consulting-services", accent: "orange" },
+  { label: "Project Management", href: "/services/project-management", key: "project-management", accent: "green" },
+  { label: "Landscape Architecture", href: "/services/landscape-architecture", key: "landscape-architecture", accent: "yellow" },
+  { label: "3D Rendering Visualization", href: "/services/3d-rendering-visualization", key: "3d-rendering-visualization", accent: "orange" },
+  { label: "Feasibility Studies", href: "/services/feasibility-studies", key: "feasibility-studies", accent: "green" },
 ];
 
 const offers = [
@@ -47,9 +54,6 @@ const benefits = [
   { title: "Refinement", icon: "/images/electrical_designs.svg" },
   { title: "Delivery & Beyond", icon: "/images/layout_design.svg" },
 ];
-
-const inputClass =
-  "w-full bg-white px-4 py-3.5 text-[14px] text-foreground placeholder:text-foreground/40 outline-none ring-brand focus:ring-2";
 
 const offerText =
   "We optimize every inch of your site by blending zoning, environmental insight, and creative planning—ensuring your project is practical, harmonious, and purpose-driven.";
@@ -97,7 +101,7 @@ export default function ServiceDetail({
       <div className="bg-[var(--accent)]">
         <nav
           aria-label="Breadcrumb"
-          className="mx-auto flex w-full max-w-[1200px] items-center gap-5 px-6 py-3.5 text-[12px] text-black"
+          className="mx-auto flex w-full max-w-[1200px] flex-wrap items-center gap-x-5 gap-y-1.5 px-6 py-3.5 text-[12px] text-black"
         >
           <Link href="/" className="font-semibold transition-opacity hover:opacity-70">
             Home
@@ -205,40 +209,7 @@ export default function ServiceDetail({
             ))}
           </ul>
 
-          <div className="relative isolate mt-12 max-w-[820px] overflow-hidden px-5 py-14 sm:px-16 sm:py-16">
-            <Image
-              src="/images/form_bg_img.png"
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 820px, 100vw"
-              className="-z-10 object-cover"
-            />
-            <form className="mx-auto max-w-[540px] bg-[var(--accent-soft)]/90 px-6 py-10 sm:px-12 sm:py-12">
-              <h3 className="text-center text-2xl font-normal leading-tight tracking-tight text-foreground lg:text-[28px]">
-                Send us your question,
-                <br />
-                and we&apos;ll be happy to help!
-              </h3>
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                <label className="sr-only" htmlFor="sd-name">Name</label>
-                <input id="sd-name" name="name" type="text" placeholder="Name" required className={inputClass} />
-                <label className="sr-only" htmlFor="sd-phone">Phone Number</label>
-                <input id="sd-phone" name="phone" type="tel" placeholder="Phone Number" className={inputClass} />
-                <label className="sr-only" htmlFor="sd-email">Email</label>
-                <input id="sd-email" name="email" type="email" placeholder="Email" required className={`${inputClass} sm:col-span-2`} />
-                <label className="sr-only" htmlFor="sd-message">Message</label>
-                <textarea id="sd-message" name="message" placeholder="Message" rows={4} required className={`${inputClass} resize-none sm:col-span-2`} />
-              </div>
-              <div className="mt-8 flex justify-center">
-                <button
-                  type="submit"
-                  className="cta-brackets text-[13px] text-foreground transition-colors hover:text-white focus-visible:text-white"
-                >
-                  Let&apos;s Talk Now
-                </button>
-              </div>
-            </form>
-          </div>
+          <ServiceForm soft={accents[accent].soft} className="mt-12 max-w-[820px]" />
         </div>
 
         {/* Sticky sidebar */}

@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import OurMission from "@/components/OurMission";
 import OurStory from "@/components/OurStory";
 import OurVision from "@/components/OurVision";
+import Testimonials from "@/components/Testimonials";
 
 export const metadata: Metadata = {
   title: "About | LX Engineering Services",
@@ -21,6 +22,7 @@ export default function AboutPage() {
         <OurMission />
         <OurVision />
         <Careers />
+        <Testimonials />
       </main>
       <Footer />
     </>

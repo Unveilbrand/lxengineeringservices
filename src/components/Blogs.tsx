@@ -6,7 +6,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 
-const posts = [
+export type BlogPost = {
+  title: string;
+  image: string;
+  alt: string;
+};
+
+export const posts: BlogPost[] = [
   {
     title: "Designing Your Dream Home: A Comprehensive Step-by-Step Guide",
     image: "/images/blog_img_1.png",
@@ -28,6 +34,38 @@ const posts = [
     alt: "Contemporary building with glass facade at dusk",
   },
 ];
+
+export function BlogCard({ title, image, alt }: BlogPost) {
+  return (
+    <article className="flex h-full flex-col bg-white pb-8 shadow-[0_12px_30px_rgba(0,0,0,0.08)]">
+      <div className="relative aspect-[210/197] w-full overflow-hidden">
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          sizes="(min-width: 1024px) 330px, (min-width: 640px) 45vw, 85vw"
+          className="object-cover"
+        />
+      </div>
+      <h3 className="mt-7 px-6 text-[18px] font-medium leading-snug text-foreground lg:text-[20px]">
+        {title}
+      </h3>
+      <Link
+        href="/blog"
+        className="mt-4 inline-flex items-center gap-1.5 self-start px-6 text-[13px] text-foreground/70 transition-colors hover:text-brand"
+      >
+        Read Blog
+        <Image
+          src="/images/buy_now_icon.svg"
+          alt=""
+          width={10}
+          height={13}
+          aria-hidden="true"
+        />
+      </Link>
+    </article>
+  );
+}
 
 export default function Blogs() {
   return (
@@ -55,35 +93,9 @@ export default function Blogs() {
             1024: { slidesPerView: 3.5 },
           }}
         >
-          {posts.map(({ title, image, alt }, i) => (
-            <SwiperSlide key={`${image}-${i}`} className="!h-auto">
-              <article className="flex h-full flex-col bg-white pb-8 shadow-[0_12px_30px_rgba(0,0,0,0.08)]">
-                <div className="relative aspect-[210/197] w-full overflow-hidden">
-                  <Image
-                    src={image}
-                    alt={alt}
-                    fill
-                    sizes="(min-width: 1024px) 330px, (min-width: 640px) 45vw, 85vw"
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="mt-7 px-6 text-[18px] font-medium leading-snug text-foreground lg:text-[20px]">
-                  {title}
-                </h3>
-                <Link
-                  href="/blog"
-                  className="mt-4 inline-flex items-center gap-1.5 self-start px-6 text-[13px] text-foreground/70 transition-colors hover:text-brand"
-                >
-                  Read Blog
-                  <Image
-                    src="/images/buy_now_icon.svg"
-                    alt=""
-                    width={10}
-                    height={13}
-                    aria-hidden="true"
-                  />
-                </Link>
-              </article>
+          {posts.map((post, i) => (
+            <SwiperSlide key={`${post.image}-${i}`} className="!h-auto">
+              <BlogCard {...post} />
             </SwiperSlide>
           ))}
         </Swiper>

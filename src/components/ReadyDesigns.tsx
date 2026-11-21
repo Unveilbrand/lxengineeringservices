@@ -10,7 +10,15 @@ const tags = [
   "Door & Window Scheduling",
 ];
 
-const plans = [
+export type ReadyDesignPlan = {
+  title: string;
+  image: string;
+  alt: string;
+  border: string;
+  band: string;
+};
+
+const plans: ReadyDesignPlan[] = [
   {
     title: "Residential 3 Bedroom Detached Bungalow",
     image: "/images/hww_1.png",
@@ -33,6 +41,54 @@ const plans = [
     band: "bg-[#e8732c]/80",
   },
 ];
+
+export function ReadyDesignCard({ title, image, alt, border, band }: ReadyDesignPlan) {
+  return (
+    <article
+      className={`flex flex-col border-[1.5px] ${border} bg-white p-2 shadow-[0_24px_60px_rgba(0,0,0,0.10)]`}
+    >
+      <div className="relative aspect-[380/300] w-full overflow-hidden">
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+          className="object-cover"
+        />
+        <h3
+          className={`absolute inset-x-0 bottom-0 ${band} px-4 py-2.5 text-[15px] font-medium leading-tight text-foreground backdrop-blur-[3px]`}
+        >
+          {title}
+        </h3>
+      </div>
+
+      <ul className="mt-4 flex flex-wrap gap-2 px-3">
+        {tags.map((tag) => (
+          <li
+            key={tag}
+            className="bg-zinc-100 px-2.5 py-1 text-[11px] text-foreground"
+          >
+            {tag}
+          </li>
+        ))}
+      </ul>
+
+      <Link
+        href="/ready-designs"
+        className="mb-2 mr-3 mt-4 inline-flex items-center gap-1 self-end border-b border-brand pb-0.5 text-[12px] text-foreground transition-colors hover:text-brand"
+      >
+        Buy Now
+        <Image
+          src="/images/buy_now_icon.svg"
+          alt=""
+          width={10}
+          height={13}
+          aria-hidden="true"
+        />
+      </Link>
+    </article>
+  );
+}
 
 export default function ReadyDesigns() {
   return (
@@ -77,51 +133,8 @@ export default function ReadyDesigns() {
 
       <div className="mx-auto w-full max-w-[1200px] px-6 pb-20">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {plans.map(({ title, image, alt, border, band }) => (
-            <article
-              key={image}
-              className={`flex flex-col border-[1.5px] ${border} bg-white p-2 shadow-[0_24px_60px_rgba(0,0,0,0.10)]`}
-            >
-              <div className="relative aspect-[380/300] w-full overflow-hidden">
-                <Image
-                  src={image}
-                  alt={alt}
-                  fill
-                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-                <h3
-                  className={`absolute inset-x-0 bottom-0 ${band} px-4 py-2.5 text-[15px] font-medium leading-tight text-foreground backdrop-blur-[3px]`}
-                >
-                  {title}
-                </h3>
-              </div>
-
-              <ul className="mt-4 flex flex-wrap gap-2 px-3">
-                {tags.map((tag) => (
-                  <li
-                    key={tag}
-                    className="bg-zinc-100 px-2.5 py-1 text-[11px] text-foreground"
-                  >
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href="/ready-designs"
-                className="mb-2 mr-3 mt-4 inline-flex items-center gap-1 self-end border-b border-brand pb-0.5 text-[12px] text-foreground transition-colors hover:text-brand"
-              >
-                Buy Now
-                <Image
-                  src="/images/buy_now_icon.svg"
-                  alt=""
-                  width={10}
-                  height={13}
-                  aria-hidden="true"
-                />
-              </Link>
-            </article>
+          {plans.map((plan) => (
+            <ReadyDesignCard key={plan.image} {...plan} />
           ))}
         </div>
       </div>

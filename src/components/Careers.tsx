@@ -72,7 +72,7 @@ export default function Careers() {
           {positions.map(({ title, date, type, pay }, i) => (
             <li
               key={i}
-              className="flex items-center justify-between gap-6 border-t border-foreground px-2 py-9 lg:even:border-l lg:even:pl-10 lg:odd:pr-10"
+              className="flex flex-col items-start gap-6 border-t border-foreground px-2 py-9 sm:flex-row sm:items-center sm:justify-between lg:even:border-l lg:even:pl-10 lg:odd:pr-10"
             >
               <div>
                 <h3 className="text-[16px] font-semibold text-foreground">

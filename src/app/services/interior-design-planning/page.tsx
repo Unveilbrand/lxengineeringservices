@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ServiceDetail from "@/components/ServiceDetail";
 import ServiceHero from "@/components/ServiceHero";
+import Testimonials from "@/components/Testimonials";
 
 export const metadata: Metadata = {
   title: "Interior Design & Planning | LX Engineering Services",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function InteriorDesignPlanningPage() {
   return (
     <>
-      <Navbar activeHref="/services" transparent dark />
+      <Navbar activeHref="/services/interior-design-planning" transparent dark />
       <main className="flex-1">
         <ServiceHero
           title="Interior Design & Planning"
@@ -28,6 +29,7 @@ export default function InteriorDesignPlanningPage() {
           ]}
           accent="yellow"
         />
+        <Testimonials />
       </main>
       <Footer />
     </>

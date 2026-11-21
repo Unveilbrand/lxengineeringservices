@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import HowWeWork from "@/components/HowWeWork";
 import Navbar from "@/components/Navbar";
 import ReadyDesigns from "@/components/ReadyDesigns";
+import Testimonials from "@/components/Testimonials";
 import WhatWeOffer from "@/components/WhatWeOffer";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <WhatWeOffer />
         <ReadyDesigns />
         <Blogs />
+        <Testimonials />
       </main>
       <Footer />
     </>

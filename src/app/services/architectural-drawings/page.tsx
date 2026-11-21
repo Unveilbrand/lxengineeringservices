@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ServiceDetail from "@/components/ServiceDetail";
 import ServiceHero from "@/components/ServiceHero";
+import Testimonials from "@/components/Testimonials";
 
 export const metadata: Metadata = {
   title: "Architectural Drawings | LX Engineering Services",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function ArchitecturalDrawingsPage() {
   return (
     <>
-      <Navbar activeHref="/services" transparent dark />
+      <Navbar activeHref="/services/architectural-drawings" transparent dark />
       <main className="flex-1">
         <ServiceHero
           title="Architectural Drawings"
@@ -27,6 +28,7 @@ export default function ArchitecturalDrawingsPage() {
             "Our team blends creativity, functionality, and technical expertise to shape spaces that inspire and elevate everyday life. From initial concepts to detailed construction documents, we transform ideas into designs that are practical, stunning, and uniquely yours.",
           ]}
         />
+        <Testimonials />
       </main>
       <Footer />
     </>

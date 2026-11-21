@@ -68,7 +68,7 @@ export default function HowWeWork() {
                   className="object-cover object-top"
                 />
                 <div
-                  className={`absolute inset-x-0 bottom-0 flex items-end gap-4 ${band} px-8 py-5 backdrop-blur-[3px]`}
+                  className={`absolute inset-x-0 bottom-0 flex items-end gap-4 ${band} px-5 py-5 backdrop-blur-[3px] sm:px-8`}
                 >
                   <p className="flex flex-col leading-none">
                     <span className="text-[12px] font-bold uppercase tracking-[0.08em] text-foreground">
@@ -83,7 +83,7 @@ export default function HowWeWork() {
                   </h3>
                 </div>
               </div>
-              <p className="px-8 pb-8 pt-7 text-[16px] leading-[1.45] text-foreground">
+              <p className="px-5 pb-8 pt-7 text-[16px] leading-[1.45] text-foreground sm:px-8">
                 {description}
               </p>
             </article>

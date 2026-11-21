@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ServiceDetail, { type ServiceAccent } from "@/components/ServiceDetail";
 import ServiceHero from "@/components/ServiceHero";
+import Testimonials from "@/components/Testimonials";
 
 type ServicePageProps = {
   slug: string;
@@ -20,7 +21,7 @@ export default function ServicePage({
 }: ServicePageProps) {
   return (
     <>
-      <Navbar activeHref="/services" transparent dark />
+      <Navbar activeHref={`/services/${slug}`} transparent dark />
       <main className="flex-1">
         <ServiceHero title={title} image={image} imageAlt={imageAlt} />
         <ServiceDetail
@@ -33,6 +34,7 @@ export default function ServicePage({
           ]}
           accent={accent}
         />
+        <Testimonials />
       </main>
       <Footer />
     </>
